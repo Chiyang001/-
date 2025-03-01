@@ -17,7 +17,7 @@
 ### 下载项目
 你可以通过以下方式下载项目代码：
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
+git clone https://github.com/Chiyang001/一键整理.git
 cd your-repo-name
 ```
 

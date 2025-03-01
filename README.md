@@ -17,8 +17,8 @@
 ### 下载项目
 你可以通过以下方式下载项目代码：
 ```bash
-git clone https://github.com/Chiyang001/一键整理.git
-cd 一键整理
+git clone https://github.com/Chiyang001/file_sort.git
+cd file_sort
 ```
 
 ### 打包成可执行文件（可选）

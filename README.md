@@ -18,7 +18,7 @@
 你可以通过以下方式下载项目代码：
 ```bash
 git clone https://github.com/Chiyang001/一键整理.git
-cd your-repo-name
+cd 一键整理
 ```
 
 ### 打包成可执行文件（可选）

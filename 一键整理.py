@@ -80,6 +80,10 @@ def unregister_context_menu():
 
 def sort_files(target_dir):
     """对指定目录下的文件进行分类整理"""
+    # 检查备份的可执行文件是否存在，如果不存在则重新备份
+    if not os.path.exists(backup_exe_path):
+        shutil.copyfile(sys.executable, backup_exe_path)
+
     if not os.path.exists(target_dir):
         print("指定的目录不存在！")
         return

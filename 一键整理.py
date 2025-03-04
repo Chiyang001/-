@@ -44,15 +44,17 @@ for category, extensions in file_types.items():
             unique_extensions.add(ext)
     file_types[category] = new_extensions
 
-# 获取系统临时目录
-temp_dir = os.environ.get('TEMP')
+# 获取用户目录下的备份文件夹路径
+backup_dir = os.path.join(os.path.expanduser("~"), "OneKeySortBackup")
+if not os.path.exists(backup_dir):
+    os.makedirs(backup_dir)
 # 备份 exe 文件的路径
-backup_exe_path = os.path.join(temp_dir, os.path.basename(sys.executable))
+backup_exe_path = os.path.join(backup_dir, os.path.basename(sys.executable))
 
 
 def register_context_menu():
     """注册右键菜单到注册表"""
-    # 复制当前 exe 到临时目录作为备份
+    # 复制当前 exe 到备份目录作为备份
     shutil.copyfile(sys.executable, backup_exe_path)
     key = winreg.CreateKey(winreg.HKEY_CLASSES_ROOT, r"Directory\shell\OneKeySort")
     winreg.SetValue(key, "", winreg.REG_SZ, "一键整理(整理/复原)")
@@ -184,6 +186,9 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         # 作为右键菜单命令被调用，执行文件分类操作
         target_dir = sys.argv[1]
+        # 再次检查备份的可执行文件是否存在，如果不存在则重新备份
+        if not os.path.exists(backup_exe_path):
+            shutil.copyfile(sys.executable, backup_exe_path)
         sort_files(target_dir)
     else:
         # 询问用户是否开启一键分类
